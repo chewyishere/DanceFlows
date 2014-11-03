@@ -10,7 +10,7 @@ void flowToolsApp::setup(){
 	
     midiIn.ignoreTypes(false, false, false);
 	
-    midiIn.addListener(this);
+    //midiIn.addListener(this);
 	
 	midiIn.setVerbose(true);
     
