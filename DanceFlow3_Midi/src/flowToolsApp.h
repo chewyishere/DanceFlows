@@ -13,7 +13,8 @@
 
 using namespace flowTools;
 
-class flowToolsApp : public ofBaseApp{
+class flowToolsApp : public ofBaseApp, public ofxMidiListener {
+    
 public:
 	void setup();
 	void update();
@@ -115,14 +116,14 @@ public:
 	
 	ofxSyphonClient mClient;
 
-    
+
     //******** MIDI ***********
 
+    
     void newMidiMessage(ofxMidiMessage& eventArgs);
 	
 	stringstream text;
 	
 	ofxMidiIn midiIn;
 	ofxMidiMessage midiMessage;
-	
 };

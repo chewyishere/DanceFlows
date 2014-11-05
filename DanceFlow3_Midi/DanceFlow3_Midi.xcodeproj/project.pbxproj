@@ -1426,6 +1426,10 @@
 					YO/addons/ofxSyphon/libs/Syphon/lib/osx,
 					/Users/qiuyi/Desktop/OF,
 					YO/addons/ofxSyphon/libs/Syphon/lib/osx,
+					/Users/qiuyi/Desktop/OF,
+					YO/addons/ofxSyphon/libs/Syphon/lib/osx,
+					/Users/qiuyi/Desktop/OF,
+					YO/addons/ofxSyphon/libs/Syphon/lib/osx,
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1520,6 +1524,7 @@
 					/Users/qiuyi/Desktop/OF,
 					YO/addons/ofxOpenCv/libs/opencv/lib/osx,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = DanceFlow3_MidiDebug;
 				USER_HEADER_SEARCH_PATHS = "../../../addons/ofxCv/libs/CLD/include/ ../../../addons/ofxKinect/libs/libusb-win32/include/ ../../../addons/ofxOsc/libs/oscpack/src/ ../../../addons/ofxCv/libs/ofxCv/include/ ../../../addons/ofxKinect/libs/libfreenect/include/ ../../../addons/ofxKinect/libs/libusb-1.0/include/ ../../../addons/ofxOpenCv/libs/opencv/include/";
 				WRAPPER_EXTENSION = app;
@@ -1534,6 +1539,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					/Users/qiuyi/Desktop/OF,
+					YO/addons/ofxSyphon/libs/Syphon/lib/osx,
+					/Users/qiuyi/Desktop/OF,
+					YO/addons/ofxSyphon/libs/Syphon/lib/osx,
 					/Users/qiuyi/Desktop/OF,
 					YO/addons/ofxSyphon/libs/Syphon/lib/osx,
 					/Users/qiuyi/Desktop/OF,
@@ -1635,6 +1644,7 @@
 					/Users/qiuyi/Desktop/OF,
 					YO/addons/ofxOpenCv/libs/opencv/lib/osx,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = DanceFlow3_Midi;
 				USER_HEADER_SEARCH_PATHS = "../../../addons/ofxCv/libs/CLD/include/ ../../../addons/ofxKinect/libs/libusb-win32/include/ ../../../addons/ofxOsc/libs/oscpack/src/ ../../../addons/ofxCv/libs/ofxCv/include/ ../../../addons/ofxKinect/libs/libfreenect/include/ ../../../addons/ofxKinect/libs/libusb-1.0/include/ ../../../addons/ofxOpenCv/libs/opencv/include/";
 				WRAPPER_EXTENSION = app;
