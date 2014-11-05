@@ -1,9 +1,8 @@
 #include "ofMain.h"
-#include "flowToolsApp.h"
+#include "ofApp.h"
 
 //#ifdef USE_PROGRAMMABLE_GL
-#include "ofGLProgrammableRenderer.h"
-//#endif
+//#include "ofGLProgrammableRenderer.h"
 
 //========================================================================
 int main( ){
@@ -12,8 +11,13 @@ int main( ){
 	ofSetCurrentRenderer(renderer, false);
 	//	ofSetCurrentRenderer(ofGLProgrammableRenderer::TYPE);
 #endif
-	ofSetupOpenGL(1024, 768, OF_WINDOW);
+	ofSetupOpenGL(1024,768,OF_WINDOW);			// <-------- setup the GL context
 
-	ofRunApp(new flowToolsApp());
+	// this kicks off the running of my app
+	// can be OF_WINDOW or OF_FULLSCREEN
+	// pass in width and height too:
+	ofRunApp( new testApp());
 
 }
+
+

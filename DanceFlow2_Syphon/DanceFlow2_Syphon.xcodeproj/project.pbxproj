@@ -292,6 +292,7 @@
 		CD0CDDE41A01831100640E91 /* Syphon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Syphon.framework; sourceTree = "<group>"; };
 		CD0CDDE61A01831100640E91 /* SyphonNameboundClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SyphonNameboundClient.h; sourceTree = "<group>"; };
 		CD0CDDE71A01831100640E91 /* SyphonNameboundClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SyphonNameboundClient.m; sourceTree = "<group>"; };
+		CD5971C21A09BD3F002E2793 /* Syphon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Syphon.framework; sourceTree = "<group>"; };
 		DED8C6880DF40E41286EB145 /* ftDensityVec2Multiplier.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ftDensityVec2Multiplier.h; path = ../../../addons/ofxFlowTools/src/tools/ftDensityVec2Multiplier.h; sourceTree = SOURCE_ROOT; };
 		E112B3AEBEA2C091BF2B40AE /* ofxPanel.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxPanel.cpp; path = ../../../addons/ofxGui/src/ofxPanel.cpp; sourceTree = SOURCE_ROOT; };
 		E3D43EDDBF7078A5B1BB987A /* ftDrawForce.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ftDrawForce.h; path = ../../../addons/ofxFlowTools/src/drawforces/ftDrawForce.h; sourceTree = SOURCE_ROOT; };
@@ -1003,6 +1004,15 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		CD5971C11A09BD3F002E2793 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				CD5971C21A09BD3F002E2793 /* Syphon.framework */,
+			);
+			name = osx;
+			path = ../../../addons/ofxSyphon/libs/Syphon/lib/osx;
+			sourceTree = "<group>";
+		};
 		D2ECBAF5C76F2A8E38DCECB5 /* drawforces */ = {
 			isa = PBXGroup;
 			children = (
@@ -1033,6 +1043,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				CD5971C11A09BD3F002E2793 /* osx */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
