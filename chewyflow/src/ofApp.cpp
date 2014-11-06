@@ -3,13 +3,20 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     
-/*	  ofSetLogLevel(OF_LOG_VERBOSE);
-      midiIn.listPorts();
-	  midiIn.openPort(2);
-      midiIn.ignoreTypes(false, false, false);
-      midiIn.addListener(this);
-	  midiIn.setVerbose(true);
-*/
+    
+	ofSetLogLevel(OF_LOG_VERBOSE);
+	
+	midiIn.listPorts();
+	
+	midiIn.openPort(2);
+    
+    midiIn.ignoreTypes(false, false, false);
+	
+	midiIn.addListener(this);
+	
+	midiIn.setVerbose(true);
+
+
     ofSetVerticalSync(false);
     
 	drawWidth = 1024;
@@ -93,13 +100,6 @@ void testApp::setup(){
 	// start from the front
 	bDrawPointCloud = false;
     
-    
-/*    // ****** Syphon *********
-    
-    mClient.setup();
-    mClient.set("","Simple Server");
-*/
-
 
 }
 
@@ -460,56 +460,6 @@ void testApp::draw(){
 		gui.draw();
 	}
     
-    
-//    mClient.draw(50, 50);
-    
-//	mainOutputSyphonServer.publishScreen();
-    
- /*   // ******************** midi stuff ********************
-    
-    ofSetColor(0);
-    text << "control: " << midiMessage.control;
-	ofDrawBitmapString(text.str(), 20, 144);
-    text.str(""); // clear
-    
-    
-	text << "value: " << midiMessage.value;
-	ofDrawBitmapString(text.str(), 20, 192);
-	text.str(""); // clear
-    
-    
-    if (midiMessage.control == 0) {
-        fluid.setSpeed(ofMap(midiMessage.value, 0, 127, 0, 100));
-    }
-    
-    else if (midiMessage.control == 1) {
-        fluid.setCellSize(ofMap(midiMessage.value, 0, 127, 0, 2));
-    }
-    
-    else if  (midiMessage.control == 2) {
-        fluid.setDissipation(ofMap(midiMessage.value, 0, 127, 0, 0.02));
-    }
-    
-    else if  (midiMessage.control == 3) {
-        opticalFlow.setStrength(ofMap(midiMessage.value, 0, 127, 0, 100));
-    }
-    else if  (midiMessage.control == 4) {
-        opticalFlow.setThreshold(ofMap(midiMessage.value, 0, 127, 0, 0.2));
-    }
-    else if  (midiMessage.control == 5) {
-        velocityMask.setBlurRadius(ofMap(midiMessage.value, 0, 127, 0, 100));
-    }
-    else if  (midiMessage.control == 6) {
-        fluid.setSmokeSigma(ofMap(midiMessage.value, 0, 127, 0, 1));
-    }
-    else if  (midiMessage.control == 7) {
-        particleFlow.setSizeSpread(ofMap(midiMessage.value, 0, 127, 0, 1));
-    }
-
-
-
-*/
-
 }
 //--------------------------------------------------------------
 void testApp::drawPointCloud() {
@@ -580,6 +530,10 @@ void testApp::drawLines() {
 void testApp::exit() {
 	kinect.setCameraTiltAngle(0); // zero the tilt on exit
 	kinect.close();
+    
+    // clean up
+    midiIn.closePort();
+    midiIn.removeListener(this);
 }
 
 //--------------------------------------------------------------
@@ -684,4 +638,10 @@ void testApp::keyPressed(int key){
 }
 
 
+//--------------------------------------------------------------
+void testApp::newMidiMessage(ofxMidiMessage& msg) {
+    
+    // make a copy of the latest message
+    midiMessage = msg;
+}
 

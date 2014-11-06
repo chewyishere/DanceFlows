@@ -2,7 +2,7 @@
 #include "ofApp.h"
 
 //#ifdef USE_PROGRAMMABLE_GL
-//#include "ofGLProgrammableRenderer.h"
+#include "ofGLProgrammableRenderer.h"
 
 //========================================================================
 int main( ){

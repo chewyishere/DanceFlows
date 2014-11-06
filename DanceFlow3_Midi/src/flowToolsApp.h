@@ -5,7 +5,6 @@
 #include "ofxFlowTools.h"
 #include "ofxOpenCv.h"
 #include "ofxKinect.h"
-#include "ofxSyphon.h"
 #include "ofxMidi.h"
 
 //#define USE_PROGRAMMABLE_GL					// Maybe there is a reason you would want to
@@ -109,12 +108,6 @@ public:
 	// used for viewing the point cloud
 	ofEasyCam easyCam;
     
-    // ************* Syphon  *************
-    
-    ofxSyphonServer mainOutputSyphonServer;
-	ofxSyphonServer individualTextureSyphonServer;
-	
-	ofxSyphonClient mClient;
 
 
     //******** MIDI ***********

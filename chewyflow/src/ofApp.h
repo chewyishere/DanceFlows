@@ -6,19 +6,17 @@
 #include "ofxFlowTools.h"
 #include "ofxOpenCv.h"
 #include "ofxKinect.h"
-#include "ofxSyphon.h"
 #include "ofxMidi.h"
 
-class testApp : public ofBaseApp {
-    //public ofxMidiListener {
-
+class testApp : public ofBaseApp, public ofxMidiListener {
 
 	public:
 		void setup();
 		void update();
 		void draw();
         void exit();
-		void keyPressed(int key);
+		
+    void keyPressed(int key);
 		
         ofVec2f				lastMouse;
     
@@ -104,16 +102,7 @@ class testApp : public ofBaseApp {
 	// used for viewing the point cloud
 	ofEasyCam easyCam;
     
-/*    // ************* Syphon  *************
-    
-    ofxSyphonServer mainOutputSyphonServer;
-	ofxSyphonServer individualTextureSyphonServer;
-	
-	ofxSyphonClient mClient;
-    
-    
-    // ******** MIDI ***********
-    
+    //******** MIDI ***********
     
     void newMidiMessage(ofxMidiMessage& eventArgs);
 	
@@ -122,5 +111,4 @@ class testApp : public ofBaseApp {
 	ofxMidiIn midiIn;
 	ofxMidiMessage midiMessage;
 
-*/
 };

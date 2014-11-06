@@ -97,12 +97,6 @@ void flowToolsApp::setup(){
 	// start from the front
 	bDrawPointCloud = false;
 
-    
-    // ****** Syphon *********
-    
-    mClient.setup();
-    mClient.set("","Simple Server");
-
 
 }
 //--------------------------------------------------------------
@@ -466,10 +460,6 @@ void flowToolsApp::draw(){
 		gui.draw();
 	}
    
-    
-    mClient.draw(50, 50);
-    
-	mainOutputSyphonServer.publishScreen();
     
  // ******************** midi stuff ********************
     
