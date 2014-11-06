@@ -460,6 +460,8 @@ void testApp::draw(){
 		gui.draw();
 	}
     
+    drawtheMidi();
+    
 }
 //--------------------------------------------------------------
 void testApp::drawPointCloud() {
@@ -643,5 +645,56 @@ void testApp::newMidiMessage(ofxMidiMessage& msg) {
     
     // make a copy of the latest message
     midiMessage = msg;
+    
 }
 
+
+//--------------------------------------------------------------
+void testApp::drawtheMidi() {
+    
+    // ******************** midi stuff ********************
+    
+    ofSetColor(255);
+    text<< "port:" << midiMessage.portNum;
+    ofDrawBitmapString(text.str(),250,20);
+    text.str(""); // clear
+    
+    text << "control: " << midiMessage.control;
+	ofDrawBitmapString(text.str(), 350, 20);
+    text.str(""); // clear
+    
+    
+	text << "value: " << midiMessage.value;
+	ofDrawBitmapString(text.str(), 450, 20);
+	text.str(""); // clear
+    
+    
+    if (midiMessage.control == 0) {
+        fluid.setSpeed(ofMap(midiMessage.value, 0, 127, 0, 100));
+    }
+    
+    else if (midiMessage.control == 1) {
+        fluid.setCellSize(ofMap(midiMessage.value, 0, 127, 0, 2));
+    }
+    
+    else if  (midiMessage.control == 2) {
+        fluid.setDissipation(ofMap(midiMessage.value, 0, 127, 0, 0.02));
+    }
+    
+    else if  (midiMessage.control == 3) {
+        opticalFlow.setStrength(ofMap(midiMessage.value, 0, 127, 0, 100));
+    }
+    else if  (midiMessage.control == 4) {
+        opticalFlow.setThreshold(ofMap(midiMessage.value, 0, 127, 0, 0.2));
+    }
+    else if  (midiMessage.control == 5) {
+        velocityMask.setBlurRadius(ofMap(midiMessage.value, 0, 127, 0, 100));
+    }
+    else if  (midiMessage.control == 6) {
+        fluid.setSmokeSigma(ofMap(midiMessage.value, 0, 127, 0, 1));
+    }
+    else if  (midiMessage.control == 7) {
+        particleFlow.setSizeSpread(ofMap(midiMessage.value, 0, 127, 0, 1));
+    }
+    
+}

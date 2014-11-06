@@ -105,7 +105,10 @@ class testApp : public ofBaseApp, public ofxMidiListener {
     //******** MIDI ***********
     
     void newMidiMessage(ofxMidiMessage& eventArgs);
-	
+	void drawtheMidi();
+    
+    
+    
 	stringstream text;
 	
 	ofxMidiIn midiIn;
