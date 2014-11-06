@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D21B98AA-8205-4B3A-90BD-7922BC1FE857</string>
+	<key>IDESourceControlProjectName</key>
+	<string>chewyflow</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4342D2E4-9164-4696-AB15-037D81C688DE</key>
+		<string>https://github.com/wuq646/DanceFlows.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>chewyflow/chewyflow.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4342D2E4-9164-4696-AB15-037D81C688DE</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/wuq646/DanceFlows.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4342D2E4-9164-4696-AB15-037D81C688DE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4342D2E4-9164-4696-AB15-037D81C688DE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DanceFlows</string>
+		</dict>
+	</array>
+</dict>
+</plist>

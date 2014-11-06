@@ -43,6 +43,7 @@
 		BCC8D420CBA9217E437D2D76 /* ofxRtMidiIn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F634AA6CA2E3C60F3B87B59A /* ofxRtMidiIn.cpp */; };
 		C6FE64F74F1EA1D98C8F9847 /* ofxMidiMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0E7EDA67EDF213FC0E83D17 /* ofxMidiMessage.cpp */; };
 		CD5971C61A09DAA5002E2793 /* Syphon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D58DCB2C0AEFDE6171E29540 /* Syphon.framework */; };
+		CDD581B41A0AFDDB0074FC6B /* Syphon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD581B31A0AFDDB0074FC6B /* Syphon.framework */; };
 		D1C26E826A2EA39A4D25FF84 /* ftVelocityMask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6591B66F774811D0B071DDB7 /* ftVelocityMask.cpp */; };
 		D31F5C1B140C59B2AF1533A8 /* registration.c in Sources */ = {isa = PBXBuildFile; fileRef = 71958293AC5292DE4B7C619D /* registration.c */; };
 		D3301F6A0B43BB293ED97C1D /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A4DD23693DFAB8EC05FAA5D /* ofxCvShortImage.cpp */; };
@@ -304,6 +305,8 @@
 		CBDE84185E2969BA4AB209FC /* general.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = general.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/general.h; sourceTree = SOURCE_ROOT; };
 		CD5971CC1A0A93C3002E2793 /* Syphon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Syphon.framework; sourceTree = "<group>"; };
 		CD8565F2F122EECA0C095526 /* types_c.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = types_c.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/types_c.h; sourceTree = SOURCE_ROOT; };
+		CDD581AF1A0AFAFC0074FC6B /* Syphon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Syphon.framework; sourceTree = "<group>"; };
+		CDD581B31A0AFDDB0074FC6B /* Syphon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Syphon.framework; sourceTree = "<group>"; };
 		CE81A5E39EB3C871FDF3D4D5 /* ofxOpenCv.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOpenCv.h; path = ../../../addons/ofxOpenCv/src/ofxOpenCv.h; sourceTree = SOURCE_ROOT; };
 		CE9C7160245B19131DAE6128 /* ofxCvColorImage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxCvColorImage.cpp; path = ../../../addons/ofxOpenCv/src/ofxCvColorImage.cpp; sourceTree = SOURCE_ROOT; };
 		CF29BFB3FD3CAA54F336E6FD /* cvaux.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = cvaux.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv/cvaux.hpp; sourceTree = SOURCE_ROOT; };
@@ -394,6 +397,7 @@
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
 				E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */,
 				E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */,
+				CDD581B41A0AFDDB0074FC6B /* Syphon.framework in Frameworks */,
 				E45BE97D0E8CC7DD009D7055 /* AudioToolbox.framework in Frameworks */,
 				E45BE97F0E8CC7DD009D7055 /* CoreAudio.framework in Frameworks */,
 				E45BE9800E8CC7DD009D7055 /* CoreFoundation.framework in Frameworks */,
@@ -740,6 +744,7 @@
 		65F3085962B3A8825746C3C2 /* Syphon */ = {
 			isa = PBXGroup;
 			children = (
+				CDD581B11A0AFDDB0074FC6B /* lib */,
 				50EAFB5FF7C5722E7B4895C7 /* src */,
 			);
 			name = Syphon;
@@ -1070,6 +1075,40 @@
 			path = ../../../addons/ofxSyphon/libs/Syphon/lib/osx;
 			sourceTree = "<group>";
 		};
+		CDD581AD1A0AFAFC0074FC6B /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				CDD581AE1A0AFAFC0074FC6B /* osx */,
+			);
+			name = lib;
+			path = ../../../addons/ofxSyphon/libs/Syphon/lib;
+			sourceTree = "<group>";
+		};
+		CDD581AE1A0AFAFC0074FC6B /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				CDD581AF1A0AFAFC0074FC6B /* Syphon.framework */,
+			);
+			path = osx;
+			sourceTree = "<group>";
+		};
+		CDD581B11A0AFDDB0074FC6B /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				CDD581B21A0AFDDB0074FC6B /* osx */,
+			);
+			name = lib;
+			path = ../../../addons/ofxSyphon/libs/Syphon/lib;
+			sourceTree = "<group>";
+		};
+		CDD581B21A0AFDDB0074FC6B /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				CDD581B31A0AFDDB0074FC6B /* Syphon.framework */,
+			);
+			path = osx;
+			sourceTree = "<group>";
+		};
 		D0CAFE48EE488EEED9149670 /* objdetect */ = {
 			isa = PBXGroup;
 			children = (
@@ -1116,6 +1155,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				CDD581AD1A0AFAFC0074FC6B /* lib */,
 				CD5971CB1A0A93C3002E2793 /* osx */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
@@ -1613,6 +1653,10 @@
 					YO/addons/ofxSyphon/libs/Syphon/lib/osx,
 					/Users/qiuyi/Desktop/OF,
 					YO/addons/ofxSyphon/libs/Syphon/lib/osx,
+					/Users/qiuyi/Desktop/OF,
+					YO/addons/ofxSyphon/libs/Syphon/lib/osx,
+					/Users/qiuyi/Desktop/OF,
+					YO/addons/ofxSyphon/libs/Syphon/lib/osx,
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1700,6 +1744,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					/Users/qiuyi/Desktop/OF,
+					YO/addons/ofxSyphon/libs/Syphon/lib/osx,
+					/Users/qiuyi/Desktop/OF,
+					YO/addons/ofxSyphon/libs/Syphon/lib/osx,
 					/Users/qiuyi/Desktop/OF,
 					YO/addons/ofxSyphon/libs/Syphon/lib/osx,
 					/Users/qiuyi/Desktop/OF,
