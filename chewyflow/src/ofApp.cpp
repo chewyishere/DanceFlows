@@ -94,7 +94,7 @@ void testApp::setup(){
 	ofSetFrameRate(60);
 	
 	// zero the tilt on startup
-	angle = 0;
+	angle = 60;
 	kinect.setCameraTiltAngle(angle);
 	
 	// start from the front
@@ -246,9 +246,7 @@ void testApp::update(){
 	deltaTime = ofGetElapsedTimef() - lastTime;
 	lastTime = ofGetElapsedTimef();
     
-    
 }
-
 
 
 //--------------------------------------------------------------
@@ -688,7 +686,7 @@ void testApp::drawtheMidi() {
         opticalFlow.setThreshold(ofMap(midiMessage.value, 0, 127, 0, 0.2));
     }
     else if  (midiMessage.control == 5) {
-        velocityMask.setBlurRadius(ofMap(midiMessage.value, 0, 127, 0, 100));
+        velocityMask.setBlurRadius(ofMap(midiMessage.value, 0, 127, 0, 10));
     }
     else if  (midiMessage.control == 6) {
         fluid.setSmokeSigma(ofMap(midiMessage.value, 0, 127, 0, 1));
