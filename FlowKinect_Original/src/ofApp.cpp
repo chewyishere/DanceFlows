@@ -295,15 +295,15 @@ void testApp::draw(){
 	}
 	particleFlow.update();
 	
-	int windowWidth = ofGetWindowWidth();
-	int windowHeight = ofGetWindowHeight();
-	
+    kinect.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+    cameraFbo.draw(0,0, ofGetWindowWidth(),ofGetWindowHeight());
+    
     ofClear(0,0);
     
     switch(visualisationMode.get()) {
             
         case 0: // Source
-			cameraFbo.draw(0,0, windowWidth, windowHeight);
+			cameraFbo.draw(0,0, ofGetWindowWidth(), ofGetWindowHeight());
 			break;
             
         case 1: // Fluid Composite
@@ -324,14 +324,14 @@ void testApp::draw(){
             
             //----------------------
             
-			cameraFbo.draw(0,0, windowWidth, windowHeight);
+			cameraFbo.draw(0,0, ofGetWindowWidth(), ofGetWindowHeight());
 			
 			ofEnableBlendMode(OF_BLENDMODE_ADD);
-			fluid.draw(0, 0,windowWidth, windowHeight);
+			fluid.draw(0, 0,ofGetWindowWidth(),ofGetWindowHeight());
 			
 			ofEnableBlendMode(OF_BLENDMODE_ADD);
 			if (particleFlow.isActive())
-				particleFlow.draw(0, 0, windowWidth, windowHeight);
+				particleFlow.draw(0, 0,ofGetWindowWidth(), ofGetWindowHeight());
             
             ofPopStyle();
 			break;
@@ -353,10 +353,10 @@ void testApp::draw(){
             
             //----------------------
             
-			fluid.draw(0, 0, windowWidth, windowHeight);
+			fluid.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
 			ofEnableBlendMode(OF_BLENDMODE_ADD);
 			if (particleFlow.isActive())
-				particleFlow.draw(0, 0, windowWidth, windowHeight);
+				particleFlow.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
             
             ofPopStyle();
 			break;
@@ -375,7 +375,7 @@ void testApp::draw(){
                 kinect.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
             
             cameraFbo.end();
-            velocityMask.draw(0, 0, windowWidth, windowHeight);
+            velocityMask.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
             ofPopStyle();
             break;
             
@@ -399,7 +399,7 @@ void testApp::draw(){
             
             ofEnableBlendMode(OF_BLENDMODE_ADD);
 			if (particleFlow.isActive())
-				particleFlow.draw(0, 0, windowWidth, windowHeight);
+				particleFlow.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
             drawPointCloud();
             easyCam.end();
             
@@ -423,7 +423,7 @@ void testApp::draw(){
             
             //----------------------
             
-            fluid.draw(0, 0, windowWidth, windowHeight);
+            fluid.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
             
 			ofPushStyle();
 			ofEnableBlendMode(OF_BLENDMODE_ADD);
@@ -570,19 +570,7 @@ void testApp::keyPressed(int key){
 		case'p':
 			bDrawPointCloud = !bDrawPointCloud;
 			break;
-			
-		case '>':
-		case '.':
-			farThreshold ++;
-			if (farThreshold > 255) farThreshold = 255;
-			break;
-			
-		case '<':
-		case ',':
-			farThreshold --;
-			if (farThreshold < 0) farThreshold = 0;
-			break;
-			
+
 		case '+':
 		case '=':
 			nearThreshold ++;
@@ -597,17 +585,7 @@ void testApp::keyPressed(int key){
 		case 'w':
 			kinect.enableDepthNearValueWhite(!kinect.isDepthNearValueWhite());
 			break;
-			
-		case 'o':
-			kinect.setCameraTiltAngle(angle); // go back to prev tilt
-			kinect.open();
-			break;
-			
-		case 'c':
-			kinect.setCameraTiltAngle(0); // zero the tilt
-			kinect.close();
-			break;
-            
+			         
 		case OF_KEY_UP:
 			angle++;
 			if(angle>30) angle=30;
