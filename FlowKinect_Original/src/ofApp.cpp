@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 
+    _currentFilter = 0;
     ofSetVerticalSync(false);
     
 	drawWidth = 1024;
@@ -80,12 +81,9 @@ void testApp::setup(){
 	ofSetFrameRate(60);
 	
 	// zero the tilt on startup
-	angle = 0;
+	angle = 30;
 	kinect.setCameraTiltAngle(angle);
-	
-	// start from the front
-	bDrawPointCloud = false;
-    
+
 
 }
 
@@ -110,7 +108,7 @@ void testApp::setupGui() {
 	visualisationModeTitles[3] = "Flow Mask      (3)";
     visualisationModeTitles[4] = "Point Cloud    (4)";
     visualisationModeTitles[5] = "Lines          (5)";
-    visualisationModeTitles[6] = "Nothing yet    (6)";
+    visualisationModeTitles[6] = "Filters         (6)";
     
 	int guiColorSwitch = 0;
 	ofColor guiHeaderColor[2];
@@ -191,10 +189,6 @@ void testApp::setupGui() {
 //--------------------------------------------------------------
 void testApp::update(){
     
-    ofBackground(100, 100, 100);
-    
-    // ************* Kinect Stuff *************
-    
     kinect.update();
 	
 	if(kinect.isFrameNew()) {
@@ -237,9 +231,7 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    
-    // ************* flowtool *************
-    
+
     ofClear(0);
     
     opticalFlow.setSource(cameraFbo.getTextureReference());
@@ -253,36 +245,6 @@ void testApp::draw(){
     fluid.addVelocity(opticalFlow.getOpticalFlowDecay());
     fluid.addDensity(velocityMask.getColorMask());
     fluid.addTemperature(velocityMask.getLuminanceMask());
-    
-    
-	for (int i=0; i<numDrawForces; i++) {
-		flexDrawForces[i].update();
-		if (flexDrawForces[i].didChange()) {
-			// if a force is constant multiply by deltaTime
-			float strength = flexDrawForces[i].getStrength();
-			if (!flexDrawForces[i].getIsTemporary())
-				strength *=deltaTime;
-			switch (flexDrawForces[i].getType()) {
-				case flowTools::FT_DENSITY:
-					fluid.addDensity(flexDrawForces[i].getTextureReference(), strength);
-					break;
-				case flowTools::FT_VELOCITY:
-					fluid.addVelocity(flexDrawForces[i].getTextureReference(), strength);
-					particleFlow.addFlowVelocity(flexDrawForces[i].getTextureReference(), strength);
-					break;
-				case flowTools::FT_TEMPERATURE:
-					fluid.addTemperature(flexDrawForces[i].getTextureReference(), strength);
-					break;
-				case flowTools::FT_PRESSURE:
-					fluid.addPressure(flexDrawForces[i].getTextureReference(), strength);
-					break;
-				case flowTools::FT_OBSTACLE:
-					fluid.addTempObstacle(flexDrawForces[i].getTextureReference());
-				default:
-					break;
-			}
-		}
-	}
 	
     fluid.update();
     
@@ -306,9 +268,7 @@ void testApp::draw(){
 			cameraFbo.draw(0,0, ofGetWindowWidth(), ofGetWindowHeight());
 			break;
             
-        case 1: // Fluid Composite
-            
-            //----------------------
+        case 1: // Fluid Compos
             
             ofPushStyle();
             ofEnableBlendMode(OF_BLENDMODE_DISABLED);
@@ -319,18 +279,14 @@ void testApp::draw(){
             else
                 kinect.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
             
-            
             cameraFbo.end();
-            
-            //----------------------
-            
-			cameraFbo.draw(0,0, ofGetWindowWidth(), ofGetWindowHeight());
+        
+            cameraFbo.draw(0,0, ofGetWindowWidth(), ofGetWindowHeight());
 			
 			ofEnableBlendMode(OF_BLENDMODE_ADD);
 			fluid.draw(0, 0,ofGetWindowWidth(),ofGetWindowHeight());
 			
-			ofEnableBlendMode(OF_BLENDMODE_ADD);
-			if (particleFlow.isActive())
+            if (particleFlow.isActive())
 				particleFlow.draw(0, 0,ofGetWindowWidth(), ofGetWindowHeight());
             
             ofPopStyle();
@@ -338,8 +294,6 @@ void testApp::draw(){
             
         case 2: // Fluid Color
             
-            //----------------------
-            
             ofPushStyle();
             ofEnableBlendMode(OF_BLENDMODE_DISABLED);
             cameraFbo.begin();
@@ -351,10 +305,9 @@ void testApp::draw(){
             
             cameraFbo.end();
             
-            //----------------------
-            
+            ofEnableBlendMode(OF_BLENDMODE_SCREEN);
 			fluid.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
-			ofEnableBlendMode(OF_BLENDMODE_ADD);
+	
 			if (particleFlow.isActive())
 				particleFlow.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
             
@@ -363,43 +316,33 @@ void testApp::draw(){
             
         case 3: // velocityMask
             
-            //----------------------
             
             ofPushStyle();
             ofEnableBlendMode(OF_BLENDMODE_DISABLED);
             cameraFbo.begin();
-            
             if (doFlipCamera)
                 kinect.draw(cameraFbo.getWidth(), 0, -ofGetWindowWidth(), ofGetWindowHeight());
             else
                 kinect.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
             
             cameraFbo.end();
+            
+            ofEnableBlendMode(OF_BLENDMODE_ADD);
             velocityMask.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
             ofPopStyle();
             break;
             
         case 4: // Point Cloud
             
-            //----------------------
-            
             ofPushStyle();
             ofEnableBlendMode(OF_BLENDMODE_DISABLED);
-            cameraFbo.begin();
-            
             easyCam.begin();
-            drawPointCloud();
-            easyCam.end();
-            
+            cameraFbo.begin();
+            kinect.draw(cameraFbo.getWidth(), 0, -ofGetWindowWidth(), ofGetWindowHeight());
             cameraFbo.end();
             
-            //----------------------
-            
-            easyCam.begin();
-            
             ofEnableBlendMode(OF_BLENDMODE_ADD);
-			if (particleFlow.isActive())
-				particleFlow.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+	        particleFlow.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
             drawPointCloud();
             easyCam.end();
             
@@ -408,32 +351,28 @@ void testApp::draw(){
             
             
         case 5: // Point Lines
-            
-            //----------------------
-            
             ofPushStyle();
             ofEnableBlendMode(OF_BLENDMODE_DISABLED);
-            cameraFbo.begin();
-            
             easyCam.begin();
-            drawPointCloud();
-            easyCam.end();
-            
+            cameraFbo.begin();
+            kinect.draw(cameraFbo.getWidth(), 0, -ofGetWindowWidth(), ofGetWindowHeight());
             cameraFbo.end();
             
-            //----------------------
-            
-            fluid.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
-            
-			ofPushStyle();
 			ofEnableBlendMode(OF_BLENDMODE_ADD);
-            
-            easyCam.begin();
             drawLines();
             easyCam.end();
             
             ofPopStyle();
             break;
+            
+        case 6:// Try to add filters
+            ofPushStyle();
+            _filters[_currentFilter]->begin();
+            kinect.draw(cameraFbo.getWidth(), 0, -ofGetWindowWidth(), ofGetWindowHeight());
+            _filters[_currentFilter]->end();
+            ofPopStyle();
+            break;
+
     }
     
     if (toggleGuiDraw) {
@@ -468,7 +407,7 @@ void testApp::drawPointCloud() {
 	ofScale(-1, -1, -1);
 	ofTranslate(0, 0, -1000); // center the points a bit
 	ofEnableDepthTest();
-	mesh.drawVertices();
+    mesh.draw();
 	ofDisableDepthTest();
 	ofPopMatrix();
 }
@@ -480,33 +419,27 @@ void testApp::drawLines() {
 	int w = 640;
 	int h = 480;
 	ofMesh mesh;
-	mesh.setMode(OF_PRIMITIVE_LINE_LOOP);
-	int step = 7;
-    
+	mesh.setMode(OF_PRIMITIVE_TRIANGLES);
+	int step = 2;
     
 	for(int y = 0; y < h; y += step) {
 		for(int x = 0; x < w; x += step) {
 			if(kinect.getDistanceAt(x, y) > 0) {
                 
                 ofColor realColor = ofColor(kinect.getColorAt(x,y));
-                
                 // how to add random?
-                
 				mesh.addColor(realColor);
                 mesh.addVertex(kinect.getWorldCoordinateAt(x, y));
 			}
 		}
 	}
-	glLineWidth(1);
+	glLineWidth(2);
     ofPushMatrix();
-    
-    //flip camera
-    
     ofScale(-1, -1, -1);
 	ofTranslate(0, 0, -1000); // center the points a bit
-    ofEnableDepthTest();
-    
-    mesh.drawWireframe();
+	ofEnableDepthTest();
+    //mesh.draw();
+    mesh.drawFaces();
 	ofDisableDepthTest();
 	ofPopMatrix();
 }
@@ -515,14 +448,7 @@ void testApp::drawLines() {
 void testApp::exit() {
 	kinect.setCameraTiltAngle(0); // zero the tilt on exit
 	kinect.close();
-   
-    /*
-    // clean up
-    midiIn.closePort();
-    midiIn.removeListener(this);
-    */
 }
-
 //--------------------------------------------------------------
 
 void testApp::keyPressed(int key){
@@ -542,9 +468,13 @@ void testApp::keyPressed(int key){
             visualisationMode.set(0);
             break;
         case '1':
+            ofEnableArbTex();
+
             visualisationMode.set(1);
             break;
         case '2':
+            ofEnableArbTex();
+
             visualisationMode.set(2);
             break;
         case '3':
@@ -562,14 +492,6 @@ void testApp::keyPressed(int key){
         case '7':
             visualisationMode.set(7);
             break;
-            
-		case ' ':
-			bThreshWithOpenCV = !bThreshWithOpenCV;
-			break;
-			
-		case'p':
-			bDrawPointCloud = !bDrawPointCloud;
-			break;
 
 		case '+':
 		case '=':
@@ -585,6 +507,11 @@ void testApp::keyPressed(int key){
 		case 'w':
 			kinect.enableDepthNearValueWhite(!kinect.isDepthNearValueWhite());
 			break;
+            
+        case ' ':
+            _currentFilter ++;
+            if (_currentFilter>=_filters.size()) _currentFilter = 0;
+            break;
 			         
 		case OF_KEY_UP:
 			angle++;
@@ -602,3 +529,21 @@ void testApp::keyPressed(int key){
 
 }
 
+void testApp::loadFilters(){
+    
+    _filters.push_back(new KuwaharaFilter());
+    _filters.push_back(new SobelEdgeDetectionFilter(drawWidth, drawHeight));
+    _filters.push_back(new BilateralFilter(drawWidth, drawHeight));
+    _filters.push_back(new SketchFilter(drawWidth, drawHeight));
+    _filters.push_back(new DilationFilter(drawWidth, drawHeight));
+    _filters.push_back(new PerlinPixellationFilter(drawWidth, drawHeight));
+    
+    FilterChain * watercolorChain = new FilterChain(drawWidth, drawHeight, "Monet");
+    watercolorChain->addFilter(new KuwaharaFilter(9));
+    watercolorChain->addFilter(new LookupFilter(drawWidth, drawHeight, "img/lookup_miss_etikate.png"));
+    watercolorChain->addFilter(new BilateralFilter(drawWidth, drawHeight));
+    watercolorChain->addFilter(new PoissonBlendFilter("img/canvas_texture.jpg", drawWidth, drawHeight, 2.0));
+    watercolorChain->addFilter(new VignetteFilter());
+    _filters.push_back(watercolorChain);
+
+}

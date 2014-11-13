@@ -6,6 +6,7 @@
 #include "ofxFlowTools.h"
 #include "ofxOpenCv.h"
 #include "ofxKinect.h"
+#include "ofxFilterLibrary.h"
 
 class testApp : public ofBaseApp{
 
@@ -90,16 +91,19 @@ class testApp : public ofBaseApp{
 	
 	ofxCvContourFinder contourFinder;
 	
-	bool bThreshWithOpenCV;
-	bool bDrawPointCloud;
-	
+	bool bThreshWithOpenCV;;
 	int nearThreshold;
-	int farThreshold;
+    int farThreshold;
 	
 	int angle;
 	
-	// used for viewing the point cloud
 	ofEasyCam easyCam;
+    
+    void loadFilters();
+
+private:
+    int                         _currentFilter;
+    vector<AbstractFilter *>    _filters;
     
 
 };
