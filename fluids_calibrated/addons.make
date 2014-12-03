@@ -1,0 +1,7 @@
+ofxXmlSettings
+ofxFluid
+ofxFX
+ofxKinectProjectorToolkit
+ofxOpenNI
+ofxSecondWindow
+ofxUI
