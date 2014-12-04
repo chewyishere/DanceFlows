@@ -306,14 +306,14 @@ void testApp::draw(){
             
             ofEnableBlendMode(blendMode);
             
-            opticalFlow.setStrength(abs(sin(ofGetElapsedTimef()*0.05)*60));
-            velocityMask.setStrength(15);
+            opticalFlow.setStrength(abs(sin(ofGetElapsedTimef()*0.03)*60));
+            velocityMask.setStrength(3);
             fluid.setCellSize(abs(sin(ofGetElapsedTimef()*0.008)*2));
             fluid.setNumJacobiIterations(100);
             fluid.setViscosity(abs(sin(ofGetElapsedTimef()*0.05)*1));
             fluid.setVorticity(abs(sin(ofGetElapsedTimef()*0.01)*1));
             fluid.setDissipation(0.02);
-            fluid.setSpeed(abs(sin(ofGetElapsedTimef()*0.02)*70));
+            fluid.setSpeed(abs(sin(ofGetElapsedTimef()*0.03)*60));
             velocityMask.setSaturation(abs(sin(ofGetElapsedTimef()*0.02)*5));
             particleFlow.activate(false);
 
