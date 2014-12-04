@@ -1673,6 +1673,7 @@
 					/Users/Gene/Code/openFrameworks/addons/ofxOpenNI/mac/copy_to_data_openni_path/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
+				SDKROOT = macosx10.6;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1759,6 +1760,7 @@
 					/Users/Gene/Code/openFrameworks/addons/ofxOpenNI/mac/copy_to_data_openni_path/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.6;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
