@@ -342,8 +342,7 @@ void testApp::draw(){
             
             
             cameraFbo.end();
-            
-			cameraFbo.draw(0,0, windowWidth, windowHeight);
+            cameraFbo.draw(0,0, windowWidth, windowHeight);
             
             ofEnableBlendMode(blendMode);
 			fluid.draw(0, 0,windowWidth, windowHeight);
