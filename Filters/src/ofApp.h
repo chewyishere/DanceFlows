@@ -37,6 +37,7 @@ class ofApp : public ofBaseApp{
 	
     int					KWidth;
 	int					KHeight;
+    ofImage                     myImg;
     
     ofxKinect           _video;
     
@@ -44,6 +45,6 @@ class ofApp : public ofBaseApp{
     int                         _currentFilter;
     vector<AbstractFilter *>    _filters;
     
-
+ofBlendMode blendMode;
 
 };

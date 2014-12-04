@@ -3,9 +3,7 @@
 void ofApp::setup(){
     ofDisableArbTex();
     ofSetVerticalSync(false);
-    
-    //   ************* Kinect Stuff *************
-    
+   // myImg.loadImage("img/04.jpg");
     ofSetLogLevel(OF_LOG_VERBOSE);
 	
 	_video.setRegistration(true);
@@ -101,17 +99,20 @@ void ofApp::update(){
 }
 
 void ofApp::draw(){
-    ofBackground(0, 0, 0);
+    ofBackground(200,230,230);
     ofSetColor(255);
     ofPushMatrix();
-    ofScale(-1, 1);
-    ofTranslate(-ofGetWindowWidth(), 0);
+    //ofScale(-1, 1);
+    //ofTranslate(-ofGetWindowWidth(), 0);
+    ofEnableBlendMode(blendMode);
     _filters[_currentFilter]->begin();
+    
+    //myImg.draw(0,0,myImg.getWidth()*1, myImg.getHeight()*1);
     _video.draw(0,0,KWidth,KHeight);
     _filters[_currentFilter]->end();
     ofPopMatrix();
     ofSetColor(255);
-    ofDrawBitmapString( _filters[_currentFilter]->getName() + " Filter\n(press SPACE to change filters)", ofPoint(40, 20));
+//    ofDrawBitmapString( _filters[_currentFilter]->getName() + " Filter\n(press SPACE to change filters)", ofPoint(40, 20));
 }
 
 void ofApp::keyPressed(int key){
@@ -119,6 +120,20 @@ void ofApp::keyPressed(int key){
         _currentFilter ++;
         if (_currentFilter>=_filters.size()) _currentFilter = 0;
     }
+    if (key== '1'){
+        blendMode = OF_BLENDMODE_MULTIPLY;
+    }
+    
+    if (key== '2'){
+        blendMode = OF_BLENDMODE_ADD;
+    }
+    if (key== '3'){
+        blendMode = OF_BLENDMODE_SCREEN;
+    }
+    if (key== '4'){
+        blendMode = OF_BLENDMODE_SUBTRACT;
+    }
+
     else if (key=='f') ofToggleFullscreen();
 }
 
